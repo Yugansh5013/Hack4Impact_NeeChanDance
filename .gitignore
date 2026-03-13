@@ -1,0 +1,5 @@
+.env
+__pycache__/
+*.pyc
+test_output.txt
+test_phase4_output.txt
