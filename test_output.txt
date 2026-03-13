@@ -1,0 +1,36 @@
+============================================================
+  STRUCTURAL TESTS  (no API key required)
+============================================================
+python : Traceback (most recent call last):
+At line:1 char:1
++ python test_agents.py 2>&1 | 
+ForEach-Object { $_ } | Out-File -FilePa 
+...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified 
+   : (Traceback (most recent call last)::  
+  String) [], RemoteException
+    + FullyQualifiedErrorId : NativeComman 
+   dError
+ 
+  File "C:\use 
+this\hack4impact\backend\test_agents.py", 
+line 412, in <module>
+    run_structural_tests()
+  File "C:\use 
+this\hack4impact\backend\test_agents.py", 
+line 275, in run_structural_tests
+    test_graph_topology()
+  File "C:\use 
+this\hack4impact\backend\test_agents.py", 
+line 98, in test_graph_topology
+    print("\n\u2500\u2500 Graph Topology 
+\u2500\u2500")
+  File "C:\Users\yugan\AppData\Local\Progra
+ms\Python\Python310\lib\encodings\cp1252.py
+", line 19, in encode
+    return codecs.charmap_encode(input,self
+.errors,encoding_table)[0]
+UnicodeEncodeError: 'charmap' codec can't 
+encode characters in position 2-3: 
+character maps to <undefined>

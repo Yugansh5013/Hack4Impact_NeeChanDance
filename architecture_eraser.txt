@@ -1,0 +1,79 @@
+# Chakravyuh High-Level Architecture
+// To render this diagram, paste this code into Eraser.io
+// It visualizes the stateless, LangGraph-driven Next.js + FastAPI architecture.
+
+// Nodes definition
+[Next.js Client] {
+  icon: nextjs
+  description: "Stateless UI. Holds the GameState JSON."
+}
+
+[FastAPI Server] {
+  icon: fastapi
+  description: "Stateless Backend. Coordinates Math + AI."
+}
+
+[Groq Llama-3-70B] {
+  icon: groq
+  description: "LLM Provider with Round-Robin API Keys."
+}
+
+[Math Engine] {
+  icon: python
+  description: "Deterministic Python. EMIs, Penalties, Validations."
+}
+
+[LangGraph Orchestrator] {
+  icon: langchain
+  description: "State Machine. Routes logic via Graphs."
+}
+
+[Marketer Agent] {
+  icon: robot
+  description: "Adversarial LLM. Generates traps."
+}
+
+[Auditor Agent] {
+  icon: book
+  description: "Educational LLM. Writes final report."
+}
+
+// Groupings
+Next.js Client {
+  [Game UI]
+  [GameState Store]
+}
+
+FastAPI Server {
+  [API Router]
+  Math Engine
+  LangGraph Orchestrator
+}
+
+LangGraph Orchestrator {
+  [Marketer Agent]
+  [Auditor Agent]
+}
+
+Groq Llama-3-70B {
+  [Rate Limit Rotator]
+  [Inference Engine]
+}
+
+// Edge connections
+[Game UI] > [API Router]: "POST /api/action (GameState + Choice)"
+[API Router] > Math Engine: "Calculate new cash, debt, stress"
+Math Engine > LangGraph Orchestrator: "Determine next state"
+
+LangGraph Orchestrator > [Marketer Agent]: "If Continue (Month N+1)"
+LangGraph Orchestrator > [Auditor Agent]: "If Game Over (Win/Loss)"
+
+[Marketer Agent] > [Rate Limit Rotator]: "structured_output request"
+[Auditor Agent] > [Rate Limit Rotator]: "structured_output request"
+
+[Rate Limit Rotator] > [Inference Engine]: "Execute prompt"
+[Inference Engine] > LangGraph Orchestrator: "Return JSON Scenario/Report"
+
+LangGraph Orchestrator > [API Router]: "Return updated GameState"
+[API Router] > [GameState Store]: "HTTP 200: New State"
+[GameState Store] > [Game UI]: "Render next month"
